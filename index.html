@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clipento – Dance Video Notes</title>
+  <meta name="description" content="Bookmark, organise and learn from your dance workshop videos. Never lose a move again." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────── */
+    :root {
+      --black:   #080808;
+      --surface: #111111;
+      --card:    #161616;
+      --border:  #222222;
+      --gold:    #C9A84C;
+      --gold-dim:#8A6E2F;
+      --gold-glow: rgba(201,168,76,0.18);
+      --blue:    #4A7FA5;
+      --white:   #F5F0E8;
+      --muted:   #7A7468;
+      --body-font: 'DM Sans', sans-serif;
+      --display-font: 'Cormorant Garamond', serif;
+      --mono-font: 'DM Mono', monospace;
+    }
+
+    /* ─── RESET ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--body-font);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── NOISE OVERLAY ──────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    section { padding: 100px 0; }
+
+    /* ─── NAV ────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: var(--display-font);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-family: var(--mono-font);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Radial glow behind hero */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, var(--gold-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono-font);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-headline {
+      font-family: var(--display-font);
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--black);
+      font-family: var(--mono-font);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover {
+      background: #D4B56A;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--mono-font);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 28px;
+      font-family: var(--mono-font);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.2s;
+    }
+    .scroll-hint::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── DIVIDER ────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ─── FEATURES ───────────────────────────────────── */
+    #features { background: var(--surface); }
+
+    .section-label {
+      font-family: var(--mono-font);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 56px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .feature-card:hover { background: #1A1A1A; }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-number {
+      font-family: var(--mono-font);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--gold-dim);
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-family: var(--display-font);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────── */
+    #about .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-heading {
+      font-family: var(--display-font);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .about-heading em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .about-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .about-body p + p { margin-top: 16px; }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-top: 8px;
+    }
+
+    .stat {
+      border-left: 2px solid var(--gold);
+      padding-left: 24px;
+    }
+    .stat-value {
+      font-family: var(--display-font);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-family: var(--mono-font);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── SUPPORT ────────────────────────────────────── */
+    #support { background: var(--surface); }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .support-intro h2 {
+      font-family: var(--display-font);
+      font-size: 2.4rem;
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .support-intro p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono-font);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .contact-link:hover { opacity: 0.7; text-decoration: none; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+
+    details {
+      border-bottom: 1px solid var(--border);
+    }
+    details:first-child { border-top: 1px solid var(--border); }
+
+    summary {
+      padding: 20px 0;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--white);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    summary:hover { color: var(--gold); }
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      font-family: var(--mono-font);
+      font-size: 1.1rem;
+      color: var(--gold-dim);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+
+    details p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.75;
+      padding-bottom: 20px;
+    }
+
+    /* ─── PRIVACY ────────────────────────────────────── */
+    #privacy {}
+
+    .privacy-header {
+      margin-bottom: 60px;
+    }
+    .privacy-header h2 {
+      font-family: var(--display-font);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .privacy-header p {
+      font-family: var(--mono-font);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .privacy-body {
+      max-width: 700px;
+    }
+
+    .privacy-section {
+      margin-bottom: 48px;
+    }
+
+    .privacy-section h3 {
+      font-family: var(--mono-font);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .privacy-section p,
+    .privacy-section ul {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .privacy-section ul {
+      padding-left: 20px;
+    }
+    .privacy-section li { margin-bottom: 6px; }
+    .privacy-section p + p { margin-top: 12px; }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 48px 28px;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: var(--display-font);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      font-family: var(--mono-font);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-family: var(--mono-font);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 700px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .container { padding: 0 20px; }
+      section { padding: 72px 0; }
+
+      #about .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .support-grid { grid-template-columns: 1fr; gap: 48px; }
+
+      .hero-headline { font-size: clamp(2.6rem, 12vw, 4rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────── -->
+  <nav>
+    <span class="nav-logo">Clipento</span>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#support">Support</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Dance Video Notes</p>
+        <h1 class="hero-headline">
+          Never lose<br />
+          a <em>move</em> again.
+        </h1>
+        <p class="hero-sub">
+          Clipento helps dancers bookmark, organise and
+          learn from their workshop and class videos.
+          From bachata to contemporary — if you learn
+          from video, Clipento is built for you.
+        </p>
+        <div class="hero-cta">
+          <a href="#" class="btn-primary">
+            ↓ App Store
+          </a>
+          <a href="#" class="btn-secondary">
+            ↓ Google Play
+          </a>
+        </div>
+      </div>
+    </div>
+    <span class="scroll-hint">Scroll to explore</span>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── FEATURES ─────────────────────────────────── -->
+  <section id="features">
+    <div class="container">
+      <p class="section-label">What Clipento does</p>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <p class="feature-number">01</p>
+          <h3 class="feature-title">Bookmark the exact moment</h3>
+          <p class="feature-desc">
+            Tap to save any moment as you watch. Name it,
+            tag it, and come back instantly. No more
+            scrubbing through hours of footage.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <p class="feature-number">02</p>
+          <h3 class="feature-title">Organise like a pro</h3>
+          <p class="feature-desc">
+            Group bookmarks into Sessions and Folders —
+            just like your workshop schedule. One folder
+            for each teacher, festival, or style.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <p class="feature-number">03</p>
+          <h3 class="feature-title">Find any move instantly</h3>
+          <p class="feature-desc">
+            Tag bookmarks with moves, concepts and body
+            parts. Then search and filter across your
+            entire library in seconds.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <p class="feature-number">04</p>
+          <h3 class="feature-title">Learning Mode</h3>
+          <p class="feature-desc">
+            Turn your bookmarks into a practice tool.
+            Learning Mode helps you actively recall and
+            reinforce what you've worked hard to save.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── ABOUT ─────────────────────────────────────── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+        <div>
+          <h2 class="about-heading">
+            Your workshops deserve better than a
+            <em>camera roll.</em>
+          </h2>
+          <div class="about-body">
+            <p>
+              You work hard in every workshop. You film
+              everything. But when you get home, those
+              videos sit unsorted — hard to find and
+              easy to forget.
+            </p>
+            <p>
+              Clipento was built by a dancer, for
+              dancers. It works with videos already on
+              your phone — no uploading, no cloud
+              storage required. Your videos stay on
+              your device.
+            </p>
+            <p>
+              Free to download. Available on iOS and
+              Android. Upgrade to Pro to unlock
+              advanced features.
+            </p>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-value">∞</div>
+            <div class="stat-label">Bookmarks you can create</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Videos uploaded to the cloud</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">1</div>
+            <div class="stat-label">Tap to save any moment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── SUPPORT ───────────────────────────────────── -->
+  <section id="support">
+    <div class="container">
+      <div class="support-grid">
+
+        <div class="support-intro">
+          <h2>Need help?</h2>
+          <p>
+            Get in touch and we'll get back to
+            you as soon as possible.
+          </p>
+          <a href="mailto:support@clipento.com" class="contact-link">
+            support@clipento.com →
+          </a>
+        </div>
+
+        <div class="faq-list">
+
+          <details>
+            <summary>How do I create a bookmark?</summary>
+            <p>While watching a video, tap the bookmark button to save the current moment. You can then name it, add tags and organise it into sessions.</p>
+          </details>
+
+          <details>
+            <summary>How do I organise my videos?</summary>
+            <p>Use Sessions and Folders to group your videos by workshop, teacher or dance style. Tap the + button to create a new session or folder.</p>
+          </details>
+
+          <details>
+            <summary>Does Clipento upload my videos?</summary>
+            <p>No. Your videos always stay on your device. Only your bookmarks and organisational data can optionally be synced to the cloud.</p>
+          </details>
+
+          <details>
+            <summary>How do I cancel my subscription?</summary>
+            <p>Subscriptions are managed through your App Store (iOS) or Google Play (Android) account. Go to your account settings and select Subscriptions to manage or cancel.</p>
+          </details>
+
+          <details>
+            <summary>How do I delete my data?</summary>
+            <p>To delete your local data, simply delete the App. To request deletion of any cloud-synced data, email us at support@clipento.com and we will process your request within 30 days.</p>
+          </details>
+
+          <details>
+            <summary>Which video formats does Clipento support?</summary>
+            <p>Clipento works with videos stored in your device's camera roll and photo library. Any video format supported by your device is supported by Clipento.</p>
+          </details>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── PRIVACY ───────────────────────────────────── -->
+  <section id="privacy">
+    <div class="container">
+      <div class="privacy-header">
+        <h2>Privacy Policy</h2>
+        <p>Last updated: April 2026</p>
+      </div>
+
+      <div class="privacy-body">
+
+        <div class="privacy-section">
+          <h3>Who we are</h3>
+          <p>Clipento is developed and operated by Lithe Studios Ltd, a company registered in England and Wales.</p>
+          <p>Contact: <a href="mailto:support@clipento.com">support@clipento.com</a></p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>What data we collect</h3>
+          <p>Clipento is designed with privacy in mind. The App operates primarily on your device and does not require an account to use.</p>
+          <p>We may collect or process the following:</p>
+          <ul>
+            <li>Device type and operating system version</li>
+            <li>App crash reports and performance data</li>
+            <li>Anonymous usage statistics to improve the App</li>
+            <li>Bookmarks, tags, session names and notes you create — stored locally on your device</li>
+            <li>If you enable sync, organisational data is backed up to secure cloud storage</li>
+          </ul>
+        </div>
+
+        <div class="privacy-section">
+          <h3>What data we do not collect</h3>
+          <ul>
+            <li>We do not collect your name or personal identity</li>
+            <li>We do not access your camera or microphone</li>
+            <li>We do not collect your location</li>
+            <li>We do not sell your data to third parties</li>
+            <li>We do not use your data for advertising purposes</li>
+          </ul>
+        </div>
+
+        <div class="privacy-section">
+          <h3>Cloud sync (optional)</h3>
+          <p>If you choose to enable cloud sync, your bookmarks, tags, sessions and app data are securely stored using Google Firebase Firestore.</p>
+          <p>Your video files are never uploaded to the cloud. Only your organisational data is synced.</p>
+          <p><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google Firebase Privacy Policy →</a></p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>In-app purchases &amp; subscriptions</h3>
+          <p>Clipento offers optional Pro subscription upgrades processed through Apple App Store and Google Play. We do not handle or store your payment information. All payments are processed by Apple or Google directly.</p>
+          <p>Subscription management and cancellation is handled through your App Store or Google Play account settings.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>Third party services</h3>
+          <ul>
+            <li><strong style="color:var(--white)">Google Firebase (Firestore)</strong> — Optional cloud sync of app data</li>
+            <li><strong style="color:var(--white)">Apple App Store / Google Play</strong> — App distribution and in-app purchases</li>
+          </ul>
+        </div>
+
+        <div class="privacy-section">
+          <h3>Data retention</h3>
+          <p>Locally stored data remains on your device until you delete the App or manually clear your data. If you use cloud sync, your data is retained in Firebase until you request deletion.</p>
+          <p>To request deletion of your cloud data, contact us at <a href="mailto:support@clipento.com">support@clipento.com</a> and we will process your request within 30 days.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>Children's privacy</h3>
+          <p>Clipento is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>Your rights (UK &amp; GDPR)</h3>
+          <p>If you are located in the United Kingdom or European Economic Area, you have the right to access, correct, delete, and port your personal data. To exercise any of these rights, contact us at <a href="mailto:support@clipento.com">support@clipento.com</a>.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>Contact us</h3>
+          <p>Lithe Studios Ltd<br />
+          Email: <a href="mailto:support@clipento.com">support@clipento.com</a><br />
+          Website: clipento.com</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Clipento</span>
+      <div class="footer-links">
+        <a href="#support">Support</a>
+        <a href="#privacy">Privacy</a>
+        <a href="mailto:support@clipento.com">Contact</a>
+      </div>
+      <p class="footer-copy">© 2026 Lithe Studios Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
