@@ -231,6 +231,11 @@ nav {
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 2px;
 }
+.f-tag-pro {
+  color: var(--purple); background: var(--gold-lt);
+  border-bottom: none; padding: 3px 10px; border-radius: 2px;
+  font-weight: 600;
+}
 .f-screenshot {
   display: flex; justify-content: flex-end; align-items: flex-end;
   padding-top: 8px;
