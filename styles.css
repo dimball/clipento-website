@@ -279,6 +279,39 @@ nav {
 }
 .feature-card:hover .f-screenshot.ipad .device-frame { transform: translateY(-4px); }
 
+/* Features — "And more" compact list */
+.features-more { margin-top: 60px; text-align: center; }
+.features-more-label {
+  font-family: var(--serif); font-size: 1.1rem;
+  font-weight: 400; font-style: italic; color: var(--muted);
+  margin-bottom: 24px;
+}
+.features-more-list {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 10px;
+}
+.features-more-list span {
+  font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--ink); background: var(--cream);
+  padding: 8px 18px; border-radius: 100px;
+  white-space: nowrap;
+}
+.features-more-list .pro-pill {
+  background: var(--purple); color: var(--paper);
+}
+.features-more-list .pro-pill em {
+  font-style: normal; font-size: 0.65rem;
+  font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold-lt);
+  margin-left: 6px;
+}
+.features-more-list .more-pill {
+  background: transparent; color: var(--muted);
+  border: 1.5px dashed var(--border);
+  font-style: italic;
+}
+
 /* MANIFESTO */
 #manifesto {
   background: var(--purple); padding: 100px 0;
