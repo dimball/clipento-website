@@ -3,7 +3,7 @@
    ───────────────────────────────────────────────────────────── */
 
 // ── Cache-bust images (bump v= when swapping screenshots) ────
-const IMG_VERSION = 2;
+const IMG_VERSION = 3;
 document.querySelectorAll('img').forEach(img => {
   const src = img.getAttribute('src');
   if (src && !src.startsWith('data:')) img.src = src + '?v=' + IMG_VERSION;
