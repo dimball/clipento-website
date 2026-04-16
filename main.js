@@ -2,6 +2,13 @@
    CLIPENTO · main.js
    ───────────────────────────────────────────────────────────── */
 
+// ── Cache-bust images (bump v= when swapping screenshots) ────
+const IMG_VERSION = 2;
+document.querySelectorAll('img').forEach(img => {
+  const src = img.getAttribute('src');
+  if (src && !src.startsWith('data:')) img.src = src + '?v=' + IMG_VERSION;
+});
+
 // ── Scroll reveal ─────────────────────────────────────────────
 const observer = new IntersectionObserver(
   entries => entries.forEach(e => {
