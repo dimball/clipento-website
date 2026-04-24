@@ -310,6 +310,7 @@
             <li><a href="#p-who">Who we are</a></li>
             <li><a href="#p-collect">What we collect</a></li>
             <li><a href="#p-not">What we don't collect</a></li>
+            <li><a href="#p-analytics">Analytics &amp; opt-out</a></li>
             <li><a href="#p-sync">Cloud sync</a></li>
             <li><a href="#p-iap">Subscriptions</a></li>
             <li><a href="#p-third">Third parties</a></li>
@@ -331,7 +332,7 @@
             <ul>
               <li>Device type and operating system version</li>
               <li>Crash reports and performance data</li>
-              <li>Anonymous usage analytics to help us improve the app</li>
+              <li>Anonymous usage analytics to help us improve the app — <strong>you can turn this off at any time in Settings → Privacy</strong></li>
             </ul>
           </div>
           <div class="p-section" id="p-not">
@@ -346,6 +347,27 @@
               <li>Bookmarks, tags, sessions and notes you create stay on your device — we never see them</li>
             </ul>
           </div>
+          <div class="p-section" id="p-analytics">
+            <h3>Analytics &amp; opt-out</h3>
+            <p>We use <strong>PostHog</strong> (EU-hosted, GDPR-compliant) to collect anonymous usage analytics. This helps us understand which features are used most so we can make Clipento better. Analytics data is completely anonymous — it never includes your videos, bookmarks, tags, notes, or any content you create.</p>
+            <p>What analytics data looks like:</p>
+            <ul>
+              <li>Aggregated feature-use counts (e.g. "learning mode was started")</li>
+              <li>Bucketed durations and counts (e.g. "session had 5–10 bookmarks")</li>
+              <li>Device OS and app version</li>
+              <li>Your subscription tier (free / pro)</li>
+            </ul>
+            <p>What it never includes:</p>
+            <ul>
+              <li>Video filenames, paths, or content</li>
+              <li>Bookmark titles, descriptions, or annotations</li>
+              <li>Tag, folder, or playlist names</li>
+              <li>Any free-form text you type</li>
+              <li>Your identity or contact details</li>
+            </ul>
+            <p><strong>To opt out:</strong> open the app, go to <em>Settings → Privacy</em> and turn off the Analytics toggle. When disabled, no data is sent and any locally queued events are immediately deleted. You can re-enable analytics at any time.</p>
+            <p><a href="https://posthog.com/privacy" target="_blank" rel="noopener">PostHog Privacy Policy →</a></p>
+          </div>
           <div class="p-section" id="p-sync">
             <h3>Cloud sync (optional)</h3>
             <p>If you choose to enable cloud sync, your bookmarks, tags, sessions and app data are securely stored using Google Firebase Firestore. Your video files are never uploaded to the cloud. Only your organisational data is synced.</p>
@@ -359,6 +381,7 @@
           <div class="p-section" id="p-third">
             <h3>Third party services</h3>
             <ul>
+              <li><strong>PostHog (EU)</strong> — Anonymous usage analytics (opt-out available in Settings → Privacy)</li>
               <li><strong>Google Firebase (Firestore)</strong> — Optional cloud sync of app data</li>
               <li><strong>Apple App Store / Google Play</strong> — App distribution and in-app purchases</li>
             </ul>
