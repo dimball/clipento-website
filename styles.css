@@ -384,6 +384,7 @@ details .ans { font-size: 1rem; color: var(--muted); line-height: 1.82; padding-
 .p-section { padding-bottom: 44px; margin-bottom: 44px; border-bottom: 1px solid var(--border); }
 .p-section:last-child { border-bottom: none; }
 .p-section h3 { font-family: var(--sans); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+.p-section h4 { font-family: var(--sans); font-size: 0.86rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin: 26px 0 10px; }
 .p-section p, .p-section ul { font-size: 1rem; color: var(--muted); line-height: 1.85; }
 .p-section ul { padding-left: 20px; }
 .p-section li { margin-bottom: 7px; }

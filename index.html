@@ -305,13 +305,14 @@
       <div class="privacy-top">
         <div class="privacy-sticky">
           <h2>PRIVACY</h2>
-          <p class="updated">Last updated: April 2026</p>
+          <p class="updated">Last updated: May 2026</p>
           <ul class="privacy-nav">
             <li><a href="#p-who">Who we are</a></li>
             <li><a href="#p-collect">What we collect</a></li>
-            <li><a href="#p-not">What we don't collect</a></li>
+            <li><a href="#p-not">What we do not collect</a></li>
             <li><a href="#p-analytics">Analytics &amp; opt-out</a></li>
             <li><a href="#p-sync">Cloud sync</a></li>
+            <li><a href="#p-auth">Accounts &amp; authentication</a></li>
             <li><a href="#p-iap">Subscriptions</a></li>
             <li><a href="#p-third">Third parties</a></li>
             <li><a href="#p-retain">Data retention</a></li>
@@ -324,15 +325,19 @@
           <div class="p-section" id="p-who">
             <h3>Who we are</h3>
             <p>Clipento is developed and operated by Lithe Studios Ltd, a company registered in England and Wales.</p>
-            <p>Contact: <a href="mailto:support@clipento.com">support@clipento.com</a></p>
+            <p><strong>Contact:</strong> <a href="mailto:support@clipento.com">support@clipento.com</a></p>
           </div>
           <div class="p-section" id="p-collect">
             <h3>What data we collect</h3>
-            <p>Clipento is designed with privacy at its core. The app works entirely on your device and does not require an account. We may collect the following to keep the app running smoothly:</p>
+            <p>Clipento is designed with privacy at its core. The app works entirely on your device without requiring an account. However, if you choose to enable cloud sync to back up your bookmarks and data across devices, you'll create an optional account using your email address.</p>
+            <p>We may collect the following to keep the app running smoothly:</p>
             <ul>
               <li>Device type and operating system version</li>
-              <li>Crash reports and performance data</li>
-              <li>Anonymous usage analytics to help us improve the app — <strong>you can turn this off at any time in Settings → Privacy</strong></li>
+              <li>Crash reports and performance data (via Google Crashlytics)</li>
+              <li>Anonymous usage analytics (via PostHog) — <strong>you can turn this off at any time in Settings → Privacy</strong></li>
+              <li>Email address — only if you enable cloud sync to back up your data</li>
+              <li>User account identifier (Firebase Auth UID) — only if you enable cloud sync, used to link your account across devices</li>
+              <li>Video location metadata (latitude and longitude) — captured when your device records videos, stored locally with your video file</li>
             </ul>
           </div>
           <div class="p-section" id="p-not">
@@ -340,24 +345,25 @@
             <ul>
               <li>We do not collect your name or personal identity</li>
               <li>We do not access your camera or microphone</li>
-              <li>We do not collect your location</li>
               <li>We do not access or upload your videos</li>
               <li>We do not sell your data to third parties</li>
-              <li>We do not use your data for advertising</li>
-              <li>Bookmarks, tags, sessions and notes you create stay on your device — we never see them</li>
+              <li>We do not use your data for advertising or marketing</li>
+              <li>Bookmarks, tags, sessions and notes you create stay on your device by default — we never see them unless you enable cloud sync</li>
             </ul>
           </div>
           <div class="p-section" id="p-analytics">
             <h3>Analytics &amp; opt-out</h3>
-            <p>We use <strong>PostHog</strong> (EU-hosted, GDPR-compliant) to collect anonymous usage analytics. This helps us understand which features are used most so we can make Clipento better. Analytics data is completely anonymous — it never includes your videos, bookmarks, tags, notes, or any content you create.</p>
-            <p>What analytics data looks like:</p>
+            <p>We use <strong>PostHog</strong> (EU-hosted, GDPR-compliant) to collect anonymous usage analytics. This helps us understand which features are used most and how you interact with Clipento, so we can make it better. Analytics data is pseudonymous — it never includes your videos, bookmarks, tags, notes, or any personal content you create.</p>
+            <h4>How analytics works</h4>
+            <p>We generate a stable, anonymous device identifier (UUID) and store it on your device. This UUID is sent to PostHog with each analytics event to track your usage patterns across sessions. The UUID is never linked to your email, account, identity, or personal data. You can delete this identifier and generate a new one by going to Settings → Privacy → Copy Analytics ID.</p>
+            <h4>What analytics data looks like</h4>
             <ul>
               <li>Aggregated feature-use counts (e.g. "learning mode was started")</li>
               <li>Bucketed durations and counts (e.g. "session had 5–10 bookmarks")</li>
               <li>Device OS and app version</li>
               <li>Your subscription tier (free / pro)</li>
             </ul>
-            <p>What it never includes:</p>
+            <h4>What it never includes</h4>
             <ul>
               <li>Video filenames, paths, or content</li>
               <li>Bookmark titles, descriptions, or annotations</li>
@@ -365,31 +371,45 @@
               <li>Any free-form text you type</li>
               <li>Your identity or contact details</li>
             </ul>
-            <p><strong>To opt out:</strong> open the app, go to <em>Settings → Privacy</em> and turn off the Analytics toggle. When disabled, no data is sent and any locally queued events are immediately deleted. You can re-enable analytics at any time.</p>
-            <p><strong>To request deletion of historical data:</strong> go to <em>Settings → Privacy → Copy Analytics ID</em>, then email <a href="mailto:support@clipento.com">support@clipento.com</a> with your ID and we will process your request within 30 days.</p>
+            <h4>Advertising</h4>
+            <p>We do not use PostHog data for targeted advertising, advertising measurement, or to build advertising profiles. We use it solely to improve the product.</p>
+            <h4>To opt out</h4>
+            <p>Open the app, go to <em>Settings → Privacy</em> and turn off the Analytics toggle. When disabled, no data is sent and any locally queued events are immediately deleted. You can re-enable analytics at any time.</p>
+            <h4>To request deletion of historical data</h4>
+            <p>Go to <em>Settings → Privacy → Copy Analytics ID</em>, then email <a href="mailto:support@clipento.com">support@clipento.com</a> with your ID and we will request deletion from PostHog. We will process your request within 30 days.</p>
             <p><a href="https://posthog.com/privacy" target="_blank" rel="noopener">PostHog Privacy Policy →</a></p>
           </div>
           <div class="p-section" id="p-sync">
             <h3>Cloud sync (optional)</h3>
-            <p>If you choose to enable cloud sync, your bookmarks, tags, sessions and app data are securely stored using Google Firebase Firestore. Your video files are never uploaded to the cloud. Only your organisational data is synced.</p>
+            <p>By default, your bookmarks, tags, sessions and app data remain only on your device. We never see them.</p>
+            <p>If you choose to enable cloud sync, your organisational data is securely stored using Google Firebase Firestore. At that point, bookmarks, tags, sessions and app data are synced to our servers and can be accessed by Lithe Studios for account recovery, backup, and troubleshooting purposes. Your video files are never uploaded to the cloud — only metadata is synced.</p>
             <p><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google Firebase Privacy Policy →</a></p>
+          </div>
+          <div class="p-section" id="p-auth">
+            <h3>Accounts &amp; authentication</h3>
+            <p>If you choose to enable cloud sync, we create a user account using your email address. We use Google Firebase Auth, which assigns a unique user ID to authenticate your account and securely link your bookmarks across devices. This ID is used only for account management, security, and device sync — it is never shared with third parties or used for advertising.</p>
           </div>
           <div class="p-section" id="p-iap">
             <h3>In-app purchases &amp; subscriptions</h3>
-            <p>Clipento offers optional Pro subscription upgrades processed through Apple App Store and Google Play. We do not handle or store your payment information. All payments are processed by Apple or Google directly.</p>
+            <p>Clipento offers optional Pro subscription upgrades processed through Apple App Store and Google Play. We do not handle or store your payment information. All payments are processed by Apple or Google directly, and we never see your payment card or account details.</p>
             <p>Subscription management and cancellation is handled through your App Store or Google Play account settings.</p>
           </div>
           <div class="p-section" id="p-third">
             <h3>Third party services</h3>
             <ul>
               <li><strong>PostHog (EU)</strong> — Anonymous usage analytics (opt-out available in Settings → Privacy)</li>
-              <li><strong>Google Firebase (Firestore)</strong> — Optional cloud sync of app data</li>
+              <li><strong>Google Firebase Firestore (US)</strong> — Optional cloud sync of app data</li>
+              <li><strong>Google Crashlytics (US)</strong> — Crash reporting and performance diagnostics (non-critical for app function)</li>
               <li><strong>Apple App Store / Google Play</strong> — App distribution and in-app purchases</li>
             </ul>
+            <p><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google Crashlytics Privacy Policy →</a></p>
           </div>
           <div class="p-section" id="p-retain">
             <h3>Data retention</h3>
-            <p>Locally stored data remains on your device until you delete the App or manually clear your data. If you use cloud sync, your data is retained in Firebase until you request deletion. Contact <a href="mailto:support@clipento.com">support@clipento.com</a> to request deletion — we will process your request within 30 days.</p>
+            <p><strong>Local data:</strong> Data stored on your device remains there until you delete the app or manually clear your data through Settings.</p>
+            <p><strong>Cloud sync data:</strong> If you use cloud sync, your data is retained in Firebase until you request deletion. Contact <a href="mailto:support@clipento.com">support@clipento.com</a> to request deletion — we will process your request within 30 days.</p>
+            <p><strong>Crash reports:</strong> Crash reports sent to Google Crashlytics are retained on Google's servers for up to 90 days before automatic deletion. You can delete your local crash logs by clearing app data from your device settings. To request expedited deletion, contact <a href="mailto:support@clipento.com">support@clipento.com</a> and we will request it from Google.</p>
+            <p><strong>Analytics data:</strong> PostHog retains pseudonymous analytics data according to their <a href="https://posthog.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
           </div>
           <div class="p-section" id="p-children">
             <h3>Children's privacy</h3>
@@ -401,7 +421,11 @@
           </div>
           <div class="p-section" id="p-contact">
             <h3>Contact us</h3>
-            <p>Lithe Studios Ltd<br />Email: <a href="mailto:support@clipento.com">support@clipento.com</a><br />Website: clipento.com</p>
+            <p>
+              Lithe Studios Ltd<br />
+              Email: <a href="mailto:support@clipento.com">support@clipento.com</a><br />
+              Website: clipento.com
+            </p>
           </div>
         </div>
       </div>
