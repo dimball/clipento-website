@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="robots" content="noindex" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:"
+  />
+  <title>Clipento Pack Invite</title>
+  <meta
+    name="description"
+    content="Open a Clipento teaching pack invite in the app, or follow the fallback steps if the app did not launch automatically."
+  />
+  <link rel="stylesheet" href="/pack/claim/index.css" />
+  <link rel="icon" href="/images/logo.png" type="image/png" />
+  <script src="/pack/claim/index.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="brand" href="/">
+      <img src="/images/logo.png" alt="Clipento logo" />
+      CLIPENTO<span>.</span>
+    </a>
+
+    <section class="card">
+      <p class="eyebrow">Teaching Pack Invite</p>
+      <h1 id="title">Open this invite in Clipento.</h1>
+      <p class="lede" id="lede">
+        This link is meant to hand off to the Clipento app so you can claim a teaching pack.
+        If the app did not open automatically, use the steps below instead of starting over.
+      </p>
+
+      <div class="status" id="status">
+        <strong>Invite ready</strong>
+        We found a teaching pack invite in this link. Open it on the phone or tablet where Clipento is installed.
+      </div>
+
+      <div class="actions">
+        <a class="button button-primary" id="open-app" href="#">Open in Clipento</a>
+        <a class="button button-secondary" href="/">Back to clipento.com</a>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <p>Open this link on the same mobile device where Clipento is installed.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <p>Make sure you are signed in to Cloud Sync inside the app before claiming the pack.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <p>If the app still does not open, copy this link and paste it into a note or message on your phone, then try again there.</p>
+        </div>
+      </div>
+
+      <p class="meta hidden" id="meta"></p>
+    </section>
+  </main>
+
+</body>
+</html>

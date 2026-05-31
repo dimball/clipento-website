@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.hng.markit",
-      "sha256_cert_fingerprints": ["TODO: INSERT_SHA256_FINGERPRINT"]
+      "sha256_cert_fingerprints": ["A0:F4:03:AF:9E:10:98:C6:6A:28:31:8F:49:9D:F0:A4:CC:58:5B:9F:82:DD:A8:3D:3D:2D:78:CE:1D:7F:8C:81"]
     }
   }
 ]
