@@ -15,6 +15,31 @@
     status.replaceChildren(strong, document.createTextNode(message));
   }
 
+  function isAndroid() {
+    return /Android/i.test(window.navigator.userAgent || '');
+  }
+
+  function buildAndroidIntentUrl(targetUrl) {
+    var url = new URL(targetUrl);
+    var path = url.pathname.replace(/^\/+/, '');
+    var scheme = url.protocol.replace(':', '');
+    var fallback = encodeURIComponent(targetUrl);
+
+    return (
+      'intent://' +
+      url.host +
+      '/' +
+      path +
+      url.search +
+      url.hash +
+      '#Intent;scheme=' +
+      scheme +
+      ';package=com.hng.markit;action=android.intent.action.VIEW;S.browser_fallback_url=' +
+      fallback +
+      ';end'
+    );
+  }
+
   openButton.href = window.location.href;
   openButton.referrerPolicy = 'no-referrer';
 
@@ -30,6 +55,21 @@
   }
 
   if (!pack) {
+    if (isAndroid()) {
+      openButton.href = buildAndroidIntentUrl(window.location.href);
+    }
+    openButton.addEventListener('click', function (event) {
+      if (!isAndroid()) {
+        return;
+      }
+
+      event.preventDefault();
+      setStatus(
+        'Opening app',
+        'Android should now hand this invite to the installed Clipento app.',
+      );
+      window.location.assign(buildAndroidIntentUrl(window.location.href));
+    });
     return;
   }
 
@@ -44,4 +84,21 @@
   var code = document.createElement('code');
   code.textContent = normalizedPack;
   meta.appendChild(code);
+
+  if (isAndroid()) {
+    openButton.href = buildAndroidIntentUrl(window.location.href);
+  }
+
+  openButton.addEventListener('click', function (event) {
+    if (!isAndroid()) {
+      return;
+    }
+
+    event.preventDefault();
+    setStatus(
+      'Opening app',
+      'Android should now hand this invite to the installed Clipento app.',
+    );
+    window.location.assign(buildAndroidIntentUrl(window.location.href));
+  });
 })();
