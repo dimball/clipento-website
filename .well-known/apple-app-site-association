@@ -4,7 +4,7 @@
     "details": [
       {
         "appID": "YZ3PNX5NF2.com.hng.markit",
-        "paths": ["/pack/claim"]
+        "paths": ["/pack/claim", "/pack/claim?*"]
       }
     ]
   }
