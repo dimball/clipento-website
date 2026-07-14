@@ -19,6 +19,10 @@
     return /Android/i.test(window.navigator.userAgent || '');
   }
 
+  function isIOS() {
+    return /iPhone|iPad|iPod/i.test(window.navigator.userAgent || '');
+  }
+
   function buildAndroidIntentUrl(targetUrl) {
     var url = new URL(targetUrl);
     var path = url.pathname.replace(/^\/+/, '');
@@ -40,7 +44,16 @@
     );
   }
 
-  openButton.href = window.location.href;
+  function buildIOSCustomSchemeUrl() {
+    var url = new URL(window.location.href);
+    return 'clipento://' + url.pathname + url.search;
+  }
+
+  if (isIOS()) {
+    openButton.href = buildIOSCustomSchemeUrl();
+  } else {
+    openButton.href = window.location.href;
+  }
   openButton.referrerPolicy = 'no-referrer';
 
   if (!token) {
@@ -59,16 +72,14 @@
       openButton.href = buildAndroidIntentUrl(window.location.href);
     }
     openButton.addEventListener('click', function (event) {
-      if (!isAndroid()) {
-        return;
+      if (isAndroid()) {
+        event.preventDefault();
+        setStatus(
+          'Opening app',
+          'Android should now hand this invite to the installed Clipento app.',
+        );
+        window.location.assign(buildAndroidIntentUrl(window.location.href));
       }
-
-      event.preventDefault();
-      setStatus(
-        'Opening app',
-        'Android should now hand this invite to the installed Clipento app.',
-      );
-      window.location.assign(buildAndroidIntentUrl(window.location.href));
     });
     return;
   }
@@ -90,15 +101,13 @@
   }
 
   openButton.addEventListener('click', function (event) {
-    if (!isAndroid()) {
-      return;
+    if (isAndroid()) {
+      event.preventDefault();
+      setStatus(
+        'Opening app',
+        'Android should now hand this invite to the installed Clipento app.',
+      );
+      window.location.assign(buildAndroidIntentUrl(window.location.href));
     }
-
-    event.preventDefault();
-    setStatus(
-      'Opening app',
-      'Android should now hand this invite to the installed Clipento app.',
-    );
-    window.location.assign(buildAndroidIntentUrl(window.location.href));
   });
 })();
