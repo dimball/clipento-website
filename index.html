@@ -313,6 +313,7 @@
             <li><a href="#p-not">What we do not collect</a></li>
             <li><a href="#p-analytics">Analytics &amp; opt-out</a></li>
             <li><a href="#p-sync">Cloud sync</a></li>
+            <li><a href="#p-packs">Teaching Packs</a></li>
             <li><a href="#p-auth">Accounts &amp; authentication</a></li>
             <li><a href="#p-iap">Subscriptions</a></li>
             <li><a href="#p-third">Third parties</a></li>
@@ -336,15 +337,15 @@
               <li>Device type and operating system version</li>
               <li>Crash reports and performance data (via Google Crashlytics)</li>
               <li>Anonymous usage analytics (via PostHog) — <strong>you can turn this off at any time in Settings → Privacy</strong></li>
-              <li>Email address — only if you enable cloud sync to back up your data</li>
-              <li>User account identifier (Firebase Auth UID) — only if you enable cloud sync, used to link your account across devices</li>
+              <li>Email address and display name — only if you sign in, which you do to use cloud sync or to open a Teaching Pack</li>
+              <li>User account identifier (Firebase Auth UID) — only if you sign in, used to recognise your account across devices and packs</li>
               <li>Video location metadata (latitude and longitude) — captured when your device records videos, stored locally with your video file</li>
             </ul>
           </div>
           <div class="p-section" id="p-not">
             <h3>What data we do not collect</h3>
             <ul>
-              <li>We do not collect your name or personal identity</li>
+              <li>We do not collect your name unless you sign in. If you do, we store the display name you choose and your email address</li>
               <li>We do not access your camera or microphone</li>
               <li>We do not access or upload your videos</li>
               <li>We do not sell your data to third parties</li>
@@ -386,9 +387,15 @@
             <p>If you choose to enable cloud sync, your organisational data is securely stored using Google Firebase Firestore. At that point, bookmarks, tags, collections and app data are synced to our servers and can be accessed by Lithe Studios for account recovery, backup, and troubleshooting purposes. Your video files are never uploaded to the cloud — only metadata is synced.</p>
             <p><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google Firebase Privacy Policy →</a></p>
           </div>
+          <div class="p-section" id="p-packs">
+            <h3>Teaching Packs</h3>
+            <p>If you join a teacher's pack, your teacher can see your display name and email address, when you joined, and your practice activity on the moves in that pack (which moves you practised and for how long). Your own notes on a pack stay private to you.</p>
+            <p>If you publish a pack, your students can see your display name and the pack's content. Your display name is visible to other signed-in Clipento users.</p>
+            <p>Leaving a pack, or being removed by the teacher, ends that access. Deleting your account removes your membership, your seat with the teacher and your practice activity.</p>
+          </div>
           <div class="p-section" id="p-auth">
             <h3>Accounts &amp; authentication</h3>
-            <p>If you choose to enable cloud sync, we create a user account using your email address. We use Google Firebase Auth, which assigns a unique user ID to authenticate your account and securely link your bookmarks across devices. This ID is used only for account management, security, and device sync — it is never shared with third parties or used for advertising.</p>
+            <p>If you sign in, to use cloud sync or to open a Teaching Pack, we create a user account using your email address. We use Google Firebase Auth, which assigns a unique user ID to authenticate your account and securely link your bookmarks across devices. This ID is used only for account management, security, and device sync — it is never shared with third parties or used for advertising.</p>
           </div>
           <div class="p-section" id="p-iap">
             <h3>In-app purchases &amp; subscriptions</h3>
@@ -408,7 +415,7 @@
           <div class="p-section" id="p-retain">
             <h3>Data retention</h3>
             <p><strong>Local data:</strong> Data stored on your device remains there until you delete the app or manually clear your data through Settings.</p>
-            <p><strong>Cloud sync data:</strong> If you use cloud sync, your data is retained in Firebase until you request deletion. Contact <a href="mailto:support@clipento.com">support@clipento.com</a> to request deletion — we will process your request within 30 days.</p>
+            <p><strong>Account and cloud data:</strong> Retained until you delete your account, which you can do in the app under Settings. You can also email <a href="mailto:support@clipento.com">support@clipento.com</a> and we will process your request within 30 days. If you are a teacher with active students, your packs stay available to them for 30 days after you delete your account and are then removed.</p>
             <p><strong>Crash reports:</strong> Crash reports sent to Google Crashlytics are retained on Google's servers for up to 90 days before automatic deletion. You can delete your local crash logs by clearing app data from your device settings. To request expedited deletion, contact <a href="mailto:support@clipento.com">support@clipento.com</a> and we will request it from Google.</p>
             <p><strong>Analytics data:</strong> PostHog retains pseudonymous analytics data according to their <a href="https://posthog.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
           </div>
