@@ -9,58 +9,61 @@
     http-equiv="Content-Security-Policy"
     content="default-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:"
   />
+  <meta name="theme-color" content="#171420" />
   <title>Clipento Pack Invite</title>
   <meta
     name="description"
     content="Open a Clipento teaching pack invite in the app, or follow the fallback steps if the app did not launch automatically."
   />
   <link rel="stylesheet" href="/pack/claim/index.css" />
-  <link rel="icon" href="/images/logo.png" type="image/png" />
+  <link rel="icon" href="/images/v2/icon.png" type="image/png" />
   <script src="/pack/claim/index.js" defer></script>
 </head>
 <body>
   <main>
     <a class="brand" href="/">
-      <img src="/images/logo.png" alt="Clipento logo" />
-      CLIPENTO<span>.</span>
+      <img src="/images/v2/icon.png" alt="" />
+      <span>Clipento</span>
     </a>
 
-    <section class="card">
-      <p class="eyebrow">Teaching Pack Invite</p>
-      <h1 id="title">Open this invite in Clipento.</h1>
-      <p class="lede" id="lede">
-        This link is meant to hand off to the Clipento app so you can claim a teaching pack.
-        If the app did not open automatically, use the steps below instead of starting over.
-      </p>
-
-      <div class="status" id="status">
-        <strong>Invite ready</strong>
-        We found a teaching pack invite in this link. Open it on the phone or tablet where Clipento is installed.
+    <div class="hero">
+      <img src="/images/v2/photo_hold.jpg" alt="" />
+      <div class="hero-label">
+        <span class="hero-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+        </span>
+        <span class="eyebrow">Teaching pack invite</span>
       </div>
+    </div>
 
-      <div class="actions">
-        <a class="button button-primary" id="open-app" href="#">Open in Clipento</a>
-        <a class="button button-secondary" href="/">Back to clipento.com</a>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <p>Open this link on the same mobile device where Clipento is installed.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <p>Make sure you are signed in to Cloud Sync inside the app before claiming the pack.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <p>If the app still does not open, copy this link and paste it into a note or message on your phone, then try again there.</p>
-        </div>
-      </div>
-
-      <p class="meta hidden" id="meta"></p>
+    <section class="intro">
+      <h1 id="title">Your teacher shared their moves with you.</h1>
+      <p class="lede" id="lede">Open the invite in Clipento to join the pack. The moves land in your library, ready to practise.</p>
     </section>
-  </main>
 
+    <div class="status" id="status" role="status">
+      <strong>Invite ready</strong>
+      We found a teaching pack invite in this link. Open it on the phone or tablet where Clipento is installed.
+    </div>
+
+    <a class="button button-primary" id="open-app" href="#">Open in Clipento</a>
+    <div class="stores">
+      <a class="button button-secondary" href="https://apps.apple.com/gb/app/clipento-dance-video-notes/id6736587051">App Store</a>
+      <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.hng.markit">Google Play</a>
+    </div>
+
+    <section class="help" aria-labelledby="help-title">
+      <h2 id="help-title">App didn't open?</h2>
+      <ol>
+        <li><span class="n">1</span><span>Open this link on the phone or tablet where Clipento is installed.</span></li>
+        <li><span class="n">2</span><span>Sign in to Clipento, then open the link again.</span></li>
+        <li><span class="n">3</span><span>Still stuck? Paste the link into a note on your phone and tap it from there.</span></li>
+      </ol>
+    </section>
+
+    <p class="meta hidden" id="meta"></p>
+
+    <a class="home-link" href="/">What is Clipento?</a>
+  </main>
 </body>
 </html>
