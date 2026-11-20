@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy and terms · Clipento</title>
+  <meta name="description" content="Clipento's privacy policy and terms of service." />
+  <meta name="theme-color" content="#171420" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="icon" href="/images/v2/icon.png" type="image/png" />
+</head>
+<body data-page="legal">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" style="border-bottom: 1px solid var(--surface); max-width: none">
+  <a class="brand" href="/"><img src="/images/v2/icon.png" alt="" /><span>Clipento</span></a>
+  <nav class="legal-tabs" aria-label="Legal"><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav>
+</header>
+<main id="main" class="wrap" style="max-width: 1180px">
+  <div class="legal legal-part" id="privacy">
+    <aside>
+      <h1>Privacy</h1>
+      <p class="updated faint" style="font-size: 14px">Last updated: November 2026</p>
+      <nav class="toc" aria-label="Privacy sections">
+        <a href="#p-who">Who we are</a>
+        <a href="#p-collect">What data we collect</a>
+        <a href="#p-not">What data we do not collect</a>
+        <a href="#p-analytics">Analytics &amp; your choice</a>
+        <a href="#p-sync">Cloud sync (optional)</a>
+        <a href="#p-packs">Teaching Packs</a>
+        <a href="#p-youtube">YouTube videos</a>
+        <a href="#p-auth">Accounts &amp; authentication</a>
+        <a href="#p-iap">In-app purchases &amp; subscriptions</a>
+        <a href="#p-third">Third party services</a>
+        <a href="#p-retain">Data retention</a>
+        <a href="#p-children">Children's privacy</a>
+        <a href="#p-rights">Your rights (UK &amp; GDPR)</a>
+        <a href="#p-contact">Contact us</a>
+      </nav>
+    </aside>
+    <div class="legal-body">
+
+          <div class="p-section" id="p-who">
+            <h3>Who we are</h3>
+            <p>Clipento is developed and operated by Lithe Studios Ltd, a company registered in England and Wales.</p>
+            <p><strong>Contact:</strong> <a href="mailto:support@clipento.com">support@clipento.com</a></p>
+          </div>
+          <div class="p-section" id="p-collect">
+            <h3>What data we collect</h3>
+            <p>Clipento is designed with privacy at its core. The app works entirely on your device without requiring an account. However, if you choose to enable cloud sync to back up your bookmarks and data across devices, you'll create an optional account using your email address.</p>
+            <p>We may collect the following to keep the app running smoothly:</p>
+            <ul>
+              <li>Device type and operating system version</li>
+              <li>Crash reports and performance data (via Google Crashlytics)</li>
+              <li>Anonymous usage analytics (via PostHog) — <strong>only if you allow it</strong> when the app asks; you can change your answer at any time in Settings → Privacy</li>
+              <li>Email address and display name — only if you sign in, which you do to use cloud sync or to open a Teaching Pack</li>
+              <li>User account identifier (Firebase Auth UID) — only if you sign in, used to recognise your account across devices and packs</li>
+              <li>Video location metadata (latitude and longitude) — captured when your device records videos and stored with the video on your device. If you use cloud sync, it is also stored with the video's details in your cloud library. It is never shared with your students.</li>
+              <li>Photos you choose for the Programme Scanner, and a cover image you add to a Teaching Pack — only if you use cloud sync or publish a pack. They are stored in Google Firebase Storage so they are available on your devices and, for a pack cover, to your students.</li>
+              <li>Links to YouTube videos you add, with details such as the video's title and thumbnail — see <a href="#p-youtube">YouTube videos</a></li>
+            </ul>
+          </div>
+          <div class="p-section" id="p-not">
+            <h3>What data we do not collect</h3>
+            <ul>
+              <li>We do not collect your name unless you sign in. If you do, we store the display name you choose and your email address</li>
+              <li>We do not access your microphone. We use your camera only when you choose to photograph a timetable for the Programme Scanner</li>
+              <li>We do not upload your videos</li>
+              <li>We do not sell your data to third parties</li>
+              <li>We do not use your data for advertising or marketing</li>
+              <li>Bookmarks, tags, collections and notes you create stay on your device by default — we never see them unless you enable cloud sync</li>
+            </ul>
+          </div>
+          <div class="p-section" id="p-analytics">
+            <h3>Analytics &amp; your choice</h3>
+            <p>We use <strong>PostHog</strong> (EU-hosted, GDPR-compliant) to collect anonymous usage analytics, if you allow it. This helps us understand which features are used most and how you interact with Clipento, so we can make it better. Analytics data is pseudonymous — it never includes your videos, bookmarks, tags, notes, or any personal content you create.</p>
+            <h4>How analytics works</h4>
+            <p>We generate a stable, anonymous device identifier (UUID) and store it on your device. This UUID is sent to PostHog with each analytics event to track your usage patterns across sessions. The UUID is never linked to your email, account, identity, or personal data. You can copy this identifier from Settings → Privacy → Copy Analytics ID. If you want to reset it and generate a new one for future analytics, use Settings → Privacy → Delete My Analytics Data.</p>
+            <h4>What analytics data looks like</h4>
+            <ul>
+              <li>Aggregated feature-use counts (e.g. "learning mode was started")</li>
+              <li>Bucketed durations and counts (e.g. "session had 5–10 bookmarks")</li>
+              <li>Device OS and app version</li>
+              <li>Your subscription tier (free / pro)</li>
+            </ul>
+            <h4>What it never includes</h4>
+            <ul>
+              <li>Video filenames, paths, or content</li>
+              <li>Bookmark titles, descriptions, or annotations</li>
+              <li>Tag, folder, or playlist names</li>
+              <li>Any free-form text you type</li>
+              <li>Your identity or contact details</li>
+            </ul>
+            <h4>Advertising</h4>
+            <p>We do not use PostHog data for targeted advertising, advertising measurement, or to build advertising profiles. We use it solely to improve the product.</p>
+            <h4>Asking first</h4>
+            <p>The app asks once whether you allow anonymous usage data, and sends nothing until you answer. If you choose Don't allow, nothing is sent. Nothing recorded before you answer is sent afterwards.</p>
+            <h4>To change your answer</h4>
+            <p>Open the app, go to <em>Settings → Privacy</em> and turn the Analytics toggle on or off. When it is off, no data is sent and any locally queued events are immediately deleted.</p>
+            <h4>To request deletion of historical data</h4>
+            <p>Go to <em>Settings → Privacy → Copy Analytics ID</em>, then email <a href="mailto:support@clipento.com">support@clipento.com</a> with your ID and we will request deletion from PostHog. We will process your request within 30 days.</p>
+            <p><a href="https://posthog.com/privacy" target="_blank" rel="noopener">PostHog Privacy Policy →</a></p>
+          </div>
+          <div class="p-section" id="p-sync">
+            <h3>Cloud sync (optional)</h3>
+            <p>By default, your bookmarks, tags, collections and app data remain only on your device. We never see them.</p>
+            <p>If you choose to enable cloud sync, your organisational data is securely stored using Google Firebase Firestore. At that point, bookmarks, tags, collections and app data are synced to our servers and can be accessed by Lithe Studios for account recovery, backup, and troubleshooting purposes. Your video files are never uploaded to the cloud — only metadata is synced.</p>
+            <p><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google Firebase Privacy Policy →</a></p>
+          </div>
+          <div class="p-section" id="p-packs">
+            <h3>Teaching Packs</h3>
+            <p>If you join a teacher's pack, your teacher can see your display name and email address, when you joined, and your practice activity on the moves in that pack (which moves you practised and for how long). Your own notes on a pack stay private to you.</p>
+            <p>If you publish a pack, your students can see your display name and the pack's content. Your display name is visible to other signed-in Clipento users.</p>
+            <p>Leaving a pack, or being removed by the teacher, ends that access. Deleting your account removes your membership, your seat with the teacher and your practice activity.</p>
+          </div>
+          <div class="p-section" id="p-youtube">
+            <h3>YouTube videos</h3>
+            <p>Clipento uses YouTube API Services to play YouTube videos you add. They play in YouTube's own embedded player. Clipento never downloads, stores or re-hosts the video itself.</p>
+            <p>When you add a YouTube video, Clipento stores its link and details such as its title and thumbnail, together with your bookmarks and tags. These stay on your device, and are also stored in your cloud library if you use cloud sync. To get the title and thumbnail, the app asks YouTube for them. Clipento does not access your YouTube or Google account.</p>
+            <p>When a YouTube video plays, YouTube (a Google service) receives information from your device, such as your IP address and which video is playing, and may store cookies or similar identifiers on your device. This is handled by Google under its own privacy policy, not by us.</p>
+            <p>By watching YouTube videos in Clipento you agree to the <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a>. You can remove a YouTube video and its bookmarks from Clipento at any time; this deletes what Clipento stored about it, including from your cloud library.</p>
+            <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy →</a></p>
+          </div>
+          <div class="p-section" id="p-auth">
+            <h3>Accounts &amp; authentication</h3>
+            <p>If you sign in, to use cloud sync or to open a Teaching Pack, we create a user account using your email address. We use Google Firebase Auth, which assigns a unique user ID to authenticate your account and securely link your bookmarks across devices. This ID is used only for account management, security, and device sync — it is never shared with third parties or used for advertising.</p>
+          </div>
+          <div class="p-section" id="p-iap">
+            <h3>In-app purchases &amp; subscriptions</h3>
+            <p>Clipento offers optional Pro subscription upgrades processed through Apple App Store and Google Play. We do not handle or store your payment information. All payments are processed by Apple or Google directly, and we never see your payment card or account details.</p>
+            <p>Subscription management and cancellation is handled through your App Store or Google Play account settings.</p>
+          </div>
+          <div class="p-section" id="p-third">
+            <h3>Third party services</h3>
+            <ul>
+              <li><strong>PostHog (EU)</strong> — Anonymous usage analytics, only if you allow it (change in Settings → Privacy)</li>
+              <li><strong>Google Firebase Firestore (US)</strong> — Optional cloud sync of app data</li>
+              <li><strong>Google Crashlytics (US)</strong> — Crash reporting and performance diagnostics (non-critical for app function)</li>
+              <li><strong>YouTube (Google)</strong> — Playback of YouTube videos you add, in YouTube's embedded player (see <a href="#p-youtube">YouTube videos</a>)</li>
+              <li><strong>Apple App Store / Google Play</strong> — App distribution and in-app purchases</li>
+            </ul>
+            <p><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google Crashlytics Privacy Policy →</a></p>
+          </div>
+          <div class="p-section" id="p-retain">
+            <h3>Data retention</h3>
+            <p><strong>Local data:</strong> Data stored on your device remains there until you delete the app or manually clear your data through Settings.</p>
+            <p><strong>Account and cloud data:</strong> Retained until you delete your account, which you can do in the app under Settings. You can also email <a href="mailto:support@clipento.com">support@clipento.com</a> and we will process your request within 30 days. If you are a teacher with active students, your packs stay available to them for 30 days after you delete your account and are then removed.</p>
+            <p><strong>Crash reports:</strong> Crash reports sent to Google Crashlytics are retained on Google's servers for up to 90 days before automatic deletion. You can delete your local crash logs by clearing app data from your device settings. To request expedited deletion, contact <a href="mailto:support@clipento.com">support@clipento.com</a> and we will request it from Google.</p>
+            <p><strong>Analytics data:</strong> PostHog retains pseudonymous analytics data according to their <a href="https://posthog.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
+          </div>
+          <div class="p-section" id="p-children">
+            <h3>Children's privacy</h3>
+            <p>Clipento is not intended for children under 13 and we do not knowingly collect personal information from them. If you believe a child under 13 has created an account, contact <a href="mailto:support@clipento.com">support@clipento.com</a> and we will delete it.</p>
+          </div>
+          <div class="p-section" id="p-rights">
+            <h3>Your rights (UK &amp; GDPR)</h3>
+            <p>If you are located in the United Kingdom or European Economic Area, you have the right to access, correct, delete, and port your personal data. To exercise any of these rights, contact us at <a href="mailto:support@clipento.com">support@clipento.com</a>.</p>
+          </div>
+          <div class="p-section" id="p-contact">
+            <h3>Contact us</h3>
+            <p>
+              Lithe Studios Ltd<br />
+              Email: <a href="mailto:support@clipento.com">support@clipento.com</a><br />
+              Website: clipento.com
+            </p>
+          </div>
+    </div>
+  </div>
+  <div class="legal legal-part" id="terms">
+    <aside>
+      <h1>Terms of Service</h1>
+      <p class="updated faint" style="font-size: 14px">Last updated: November 2026</p>
+      <nav class="toc" aria-label="Terms of Service sections">
+        <a href="#t-agreement">Agreement</a>
+        <a href="#t-what">What Clipento is</a>
+        <a href="#t-account">Your account</a>
+        <a href="#t-subs">Subscriptions and payments</a>
+        <a href="#t-content">Your content</a>
+        <a href="#t-sharing">Sharing and collaboration</a>
+        <a href="#t-audio">Audio analysis</a>
+        <a href="#t-analytics">Analytics and crash reporting</a>
+        <a href="#t-use">Acceptable use</a>
+        <a href="#t-ip">Intellectual property</a>
+        <a href="#t-disclaimer">Disclaimer of warranties</a>
+        <a href="#t-liability">Limitation of liability</a>
+        <a href="#t-changes">Changes to these Terms</a>
+        <a href="#t-termination">Termination</a>
+        <a href="#t-law">Governing law</a>
+        <a href="#t-contact">Contact</a>
+      </nav>
+    </aside>
+    <div class="legal-body">
+
+
+          <div class="p-section" id="t-agreement">
+            <h3>1. Agreement</h3>
+            <p>By downloading, installing, or using Clipento ("the App"), you agree to these Terms of Service ("Terms"). If you do not agree, do not use the App.</p>
+            <p>Clipento is developed and operated by <strong>Lithe Studios Ltd</strong>, a company registered in England and Wales.</p>
+          </div>
+
+          <div class="p-section" id="t-what">
+            <h3>2. What Clipento is</h3>
+            <p>Clipento is a mobile application for bookmarking, annotating, and organising video content for learning purposes. It is designed for dancers, martial artists, and movement learners to mark key moments in video recordings and build a structured practice library.</p>
+            <p>The App operates primarily on your device. You can add videos from your device's photo library or by providing a remote URL. Videos from your photo library stay on your device — Clipento does not upload them. Remote URLs are accessed directly from the source and are not re-hosted by Clipento.</p>
+          </div>
+
+          <div class="p-section" id="t-account">
+            <h3>3. Your account</h3>
+            <p>Clipento does not require an account for core functionality. If you choose to enable cloud sync (when available), you will create an account using your email address via Firebase Authentication. You are responsible for maintaining the security of your account credentials.</p>
+            <p>You must be at least 13 years old to create a Clipento account. Teachers must not invite students under 13.</p>
+          </div>
+
+          <div class="p-section" id="t-subs">
+            <h3>4. Subscriptions and payments</h3>
+            <p>Clipento offers an optional paid subscription (Pro) that unlocks additional features. Subscriptions are processed through Apple App Store or Google Play Store depending on your platform.</p>
+            <ul>
+              <li><strong>Billing:</strong> Subscriptions are billed on a monthly or annual basis through your app store account.</li>
+              <li><strong>Renewal:</strong> Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period.</li>
+              <li><strong>Cancellation:</strong> You can cancel at any time through your device's app store settings. Cancellation takes effect at the end of the current billing period.</li>
+              <li><strong>Refunds:</strong> Refund requests are handled by Apple or Google according to their respective policies.</li>
+              <li><strong>Free tier:</strong> Core bookmarking and video playback features remain available without a subscription.</li>
+            </ul>
+            <p>For Apple users, subscriptions are also subject to <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple's Standard EULA</a>.</p>
+          </div>
+
+          <div class="p-section" id="t-content">
+            <h3>5. Your content</h3>
+            <p><strong>You own your content.</strong> Clipento does not claim any ownership over your videos, bookmarks, annotations, tags, practice data, or any other content you create within the App.</p>
+            <ul>
+              <li><strong>Local storage:</strong> Your content is stored on your device using an on-device database. Clipento does not upload your content to our servers unless you explicitly enable cloud sync.</li>
+              <li><strong>Remote videos:</strong> You may add videos via URL from external sources. You are responsible for ensuring you have the right to access and bookmark that content. Clipento does not host, cache, or redistribute remote video files.</li>
+              <li><strong>YouTube videos:</strong> YouTube videos play in YouTube's own embedded player, using YouTube API Services. By watching YouTube videos in the App you agree to be bound by the <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a>. Google's handling of your information is covered by the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
+              <li><strong>Export packages:</strong> You may export your bookmarks and metadata as <code>.clipento</code> packages to share with other users. When you share a package, you are responsible for the content you distribute.</li>
+              <li><strong>Import packages:</strong> When importing content shared by others, bookmarks and metadata are added to your local library. Imported content is clearly labelled as imported.</li>
+              <li><strong>Cloud sync</strong> (when available): If enabled, your bookmark data (not your video files) is synced to secure cloud storage to allow access across your devices.</li>
+            </ul>
+          </div>
+
+          <div class="p-section" id="t-sharing">
+            <h3>6. Sharing and collaboration</h3>
+            <p>Clipento allows you to share bookmark data with other users through <code>.clipento</code> packages. When sharing:</p>
+            <ul>
+              <li>You may only share content you have the right to share.</li>
+              <li>Shared packages contain bookmark metadata, tags, timing data, and small thumbnail images — not the original video files.</li>
+              <li>Recipients can view, import, and use shared bookmarks within their own copy of Clipento.</li>
+              <li>You should not use the sharing feature to distribute copyrighted material, offensive content, or content that violates any applicable laws.</li>
+            </ul>
+          </div>
+
+          <div class="p-section" id="t-audio">
+            <h3>7. Audio analysis</h3>
+            <p>Clipento extracts audio fingerprints (energy envelopes) from your videos to enable bookmark time-offset detection when matching videos across devices. This analysis:</p>
+            <ul>
+              <li>Occurs entirely on your device.</li>
+              <li>Produces a compact mathematical representation (not a recognisable audio recording).</li>
+              <li>May be included in <code>.clipento</code> export packages to enable cross-device bookmark alignment.</li>
+              <li>The extracted audio data is temporary and deleted after analysis.</li>
+            </ul>
+          </div>
+
+          <div class="p-section" id="t-analytics">
+            <h3>8. Analytics and crash reporting</h3>
+            <p>With your permission, Clipento collects anonymous usage analytics (via PostHog), and it collects crash reports (via Firebase Crashlytics), to improve the App. You can change your analytics choice at any time in Settings → Privacy. Full details are in our <a href="#privacy">Privacy Policy</a>.</p>
+          </div>
+
+          <div class="p-section" id="t-use">
+            <h3>9. Acceptable use</h3>
+            <p>You agree not to:</p>
+            <ul>
+              <li>Reverse engineer, decompile, or disassemble the App.</li>
+              <li>Use the App for any illegal purpose.</li>
+              <li>Attempt to access other users' data or interfere with the App's infrastructure.</li>
+              <li>Distribute malicious content through <code>.clipento</code> packages.</li>
+              <li>Use the App in a way that infringes the intellectual property rights of others.</li>
+              <li>Use remote URL features to access content you do not have permission to view.</li>
+            </ul>
+          </div>
+
+          <div class="p-section" id="t-ip">
+            <h3>10. Intellectual property</h3>
+            <p>The Clipento name, logo, design, and source code are the property of Lithe Studios Ltd. You may not copy, modify, or distribute the App or its components without permission.</p>
+            <p>Open-source libraries used by Clipento retain their respective licences.</p>
+          </div>
+
+          <div class="p-section" id="t-disclaimer">
+            <h3>11. Disclaimer of warranties</h3>
+            <p>Clipento is provided "as is" and "as available" without warranties of any kind, whether express or implied. We do not guarantee that:</p>
+            <ul>
+              <li>The App will be uninterrupted or error-free.</li>
+              <li>Video bookmark timing will be perfectly accurate across all devices and formats.</li>
+              <li>Cloud sync (when available) will preserve all data in all circumstances.</li>
+            </ul>
+            <p>You are responsible for maintaining your own backups of important content.</p>
+          </div>
+
+          <div class="p-section" id="t-liability">
+            <h3>12. Limitation of liability</h3>
+            <p>To the maximum extent permitted by applicable law, Lithe Studios Ltd shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data, arising from your use of the App.</p>
+            <p>Our total liability for any claim arising from these Terms or your use of the App shall not exceed the amount you paid for Clipento subscriptions in the twelve months preceding the claim, or £50, whichever is greater.</p>
+          </div>
+
+          <div class="p-section" id="t-changes">
+            <h3>13. Changes to these Terms</h3>
+            <p>We may update these Terms from time to time. If we make material changes, we will notify you through the App or by updating the "Last updated" date. Your continued use of the App after changes constitutes acceptance of the updated Terms.</p>
+          </div>
+
+          <div class="p-section" id="t-termination">
+            <h3>14. Termination</h3>
+            <p>You may stop using Clipento at any time by deleting the App. We may suspend or terminate your access if you violate these Terms.</p>
+            <p>On termination, your locally stored content remains on your device. Cloud-synced data (if enabled) may be deleted according to our data retention policy in the <a href="#privacy">Privacy Policy</a>.</p>
+          </div>
+
+          <div class="p-section" id="t-law">
+            <h3>15. Governing law</h3>
+            <p>These Terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+          </div>
+
+          <div class="p-section" id="t-contact">
+            <h3>16. Contact</h3>
+            <p>If you have questions about these Terms, contact us at <a href="mailto:support@clipento.com">support@clipento.com</a>.</p>
+          </div>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="faint" style="font-size: 14px">© 2026 Lithe Studios Ltd</span>
+    <nav class="foot-nav" aria-label="Footer"><a href="/">Home</a><a href="/teachers/">For teachers</a><a href="mailto:support@clipento.com">support@clipento.com</a></nav>
+  </div>
+</footer>
+</body>
+</html>
